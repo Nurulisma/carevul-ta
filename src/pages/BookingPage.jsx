@@ -61,7 +61,7 @@ const BookingPage = () => {
         .catch(err => console.log(err))
 
         // create chat room
-        fetch(`https://sk-chat-api.vercel.app/api/room`, {
+        fetch(`https://sk-chat-api-five.vercel.app/api/room`, {
             method: 'POST',
             headers: {
                 'Accept': '*/*',
@@ -142,12 +142,12 @@ const BookingPage = () => {
                                     <h5 className='text-carevul'>Isi form di bawah ini yuk !</h5>
                                     <h6>Nama Lengkap :  </h6>
                                     <div className="input-group mb-3">
-                                        <input type="text" className="form-control" placeholder="Masukkan Nama Lengkap" aria-label="Username" aria-describedby="basic-addon1" name="client_name" id="input-name" value={fullName} onChange={e => handleChangeFullName(e)} />
+                                        <input type="text" style={{outlineColor:"#eeeeee"}} className="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1" name="client_name" id="input-name" value={fullName} onChange={e => handleChangeFullName(e)} />
                                     </div>
                                     <h6>Keluhan : </h6>
                                     <div className="form-floating">
                                         <textarea className="form-control" placeholder="Leave a comment here" id="input-keluhan" value={complaint} onChange={(e) => handleChangeComplaint(e)} ></textarea>
-                                        <label htmlFor="input-keluhan">Silahkan tuliskan keluhan anda : </label>
+                                        <label htmlFor="input-keluhan"></label>
                                     </div>
                                     <div className="text-center mt-4">
                                         <p className="fw-light text-carevul"> Harap memasuki roomchat konsultasi pada jadwal yang di tentukan</p>

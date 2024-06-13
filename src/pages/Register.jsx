@@ -15,7 +15,7 @@ function Register() {
   const handleRegister = async (e) => {
     e.preventDefault();
 
-    let res = await axios.get("https://6454b891f803f345762f6469.mockapi.io/users");
+    let res = await axios.get("https://665e86491e9017dc16f04fff.mockapi.io/users");
     let data = await res.data;
 
     const ambilData = async() => {
@@ -30,7 +30,7 @@ function Register() {
 
       if (result == 0) {
         await axios
-          .post("https://6454b891f803f345762f6469.mockapi.io/users", {
+          .post("https://665e86491e9017dc16f04fff.mockapi.io/users", {
             name: name,
             email: email,
             password: password,

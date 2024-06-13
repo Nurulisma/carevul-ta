@@ -15,7 +15,7 @@ function RegisterDoctor() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    let res = await axios.get("https://6487fbcf0e2469c038fcbc44.mockapi.io/doctor");
+    let res = await axios.get("https://66684db2f53957909ff76db5.mockapi.io/doctor");
     let data = await res.data;
 
     const ambilData = () => {
@@ -28,7 +28,7 @@ function RegisterDoctor() {
 
       if (result < 1) {
         axios
-          .post("https://6487fbcf0e2469c038fcbc44.mockapi.io/doctor", {
+          .post("https://66684db2f53957909ff76db5.mockapi.io/doctor", {
             name: name,
             email: email,
             password: password,

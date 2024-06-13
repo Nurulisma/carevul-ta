@@ -10,8 +10,8 @@ import "./../styles/bmi-calculator.css";
 import AOS from "aos";
 
 function BmiCalculator() {
-  const [weight, setWeight] = useState(0);
-  const [height, setHeight] = useState(0);
+  const [weight, setWeight] = useState("");
+  const [height, setHeight] = useState("");
   const [bmi, setBmi] = useState("");
   const [message, setMessage] = useState("");
 
@@ -56,20 +56,20 @@ function BmiCalculator() {
     window.location.reload();
   }
   return (
-    <div className="app">
+    <div className="app ">
       <div className="container-bmi" data-aos="zoom-in" data-aos-duration="1000">
         <h3 id="title-bmi">Kalkulator BMI</h3>
-        <p id="desc-bmi">Untuk menghitung BMI, masukkan tinggi badan<br></br> dan berat badan kamu yuk!</p>
+        <p id="desc-bmi" className="fs-6">Untuk menghitung BMI, masukkan tinggi badan<br></br> dan berat badan kamu yuk!</p>
         <form onSubmit={calculatebmi} id="form-bmi">
           <div>
             <label>Berat Badan (Kg)</label>
-            <input value={weight} onChange={(e) => setWeight(e.target.value)} className="form-control" placeholder="Masukkan Berat badan"/>
+            <input value={weight} onChange={(e) => setWeight(e.target.value)} className="form-control" style={{outlineColor:"#eeeeee"}} placeholder=""/>
           </div>
-          <div>
+          <div className="mb-5">
             <label>Tinggi Badan (Cm)</label>
-            <input value={height} onChange={(e) => setHeight(e.target.value)} className="form-control" placeholder="Masukkan Tinggi badan"/>
+            <input value={height} onChange={(e) => setHeight(e.target.value)} className="form-control" style={{outlineColor:"#eeeeee"}} placeholder=""/>
           </div>
-          <button className="btn-bmi" type="submit">
+          <button className="btn-bmi " type="submit">
             Hitung BMI
           </button>
           <button className="btn-bmi btn-outline" type="submit" onClick={reload}>

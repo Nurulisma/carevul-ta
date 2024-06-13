@@ -12,12 +12,12 @@ const DetailDoctor = () => {
 
   useEffect(() => {
     const getBookedUsers = async () => {
-      const doctorChatRooms = await axios.get(`https://sk-chat-api.vercel.app/api/room?userId=${loggedDoctor.id}&userType=DOCTOR`).then((res) => res.data);
-      const usersData = await axios.get(`https://6454b891f803f345762f6469.mockapi.io/users`).then((res) => res.data);
+      const doctorChatRooms = await axios.get(`https://sk-chat-api-five.vercel.app/api/room?userId=${loggedDoctor?.id}&userType=DOCTOR`).then((res) => res.data);
+      const usersData = await axios.get(`https://665e86491e9017dc16f04fff.mockapi.io/users`).then((res) => res.data);
 
       const chatRooms = doctorChatRooms.map((room) => {
-        const user = usersData.find((user) => user.id === room.userId);
-        return { ...room, user, idDoctor: loggedDoctor.id, idUser: user.id };
+        const user = usersData.find((user) => user?.id === room.userId);
+        return { ...room, user, idDoctor: loggedDoctor?.id, idUser: user?.id };
       });
 
       setAvailableChatRooms(chatRooms);
@@ -37,14 +37,14 @@ const DetailDoctor = () => {
                     <div className="row" key={roomData.id}>
                       <div className="col-12">
                         <ChatItemListForDoctor
-                          key={roomData.id}
-                          avatar={roomData.user.image}
-                          alt={roomData.user.email}
-                          title={roomData.user.name}
-                          subtitle={roomData.user.email}
+                          key={roomData?.id}
+                          avatar={roomData?.user?.image}
+                          alt={roomData?.user?.email}
+                          title={roomData?.user?.name}
+                          subtitle={roomData?.user?.email}
                           date={new Date()}
                           unread={0}
-                          id={roomData.id}
+                          id={roomData?.id}
                           data={roomData}
                         />
                       </div>

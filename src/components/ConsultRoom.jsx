@@ -18,7 +18,10 @@ const ConsultRoom = () => {
   const [chatList, setChatList] = useState([]);
 
   // get data logged user from localstorage
-  const loggedUser = JSON.parse(localStorage.getItem("idUser"));
+  useEffect(()=>{
+    const loggedUser = JSON.parse(localStorage.getItem("idUser"));
+  },[])
+  
 
   useEffect(() => {
     AOS.init();
@@ -27,12 +30,13 @@ const ConsultRoom = () => {
 
   useEffect(() => {
     const getBookedDoctors = async () => {
-      const userChatRooms = await axios.get(`https://sk-chat-api.vercel.app/api/room?userId=${loggedUser.id}`).then((res) => res.data);
-      const doctorsData = await axios.get(`https://6487fbcf0e2469c038fcbc44.mockapi.io/doctor`).then((res) => res.data);
+      const loggedUser = JSON.parse(localStorage.getItem("idUser"));
+      const userChatRooms = await axios.get(`https://sk-chat-api-five.vercel.app/api/room?userId=${loggedUser?.id}`).then((res) => res.data);
+      const doctorsData = await axios.get(`https://66684db2f53957909ff76db5.mockapi.io/doctor`).then((res) => res.data);
 
       const chatRooms = userChatRooms.map((room) => {
-        const doctor = doctorsData.find((doctor) => doctor.id === room.doctorId);
-        return { ...room, doctor, idUser: loggedUser.id, idDoctor: doctor.id };
+        const doctor = doctorsData.find((doctor) => doctor?.id === room?.doctorId);
+        return { ...room, doctor, idUser: loggedUser?.id, idoctor: doctor?.id };
       });
 
       setAvailableChatRooms(chatRooms);
@@ -43,10 +47,10 @@ const ConsultRoom = () => {
   return (
     <>
       {availableChatRooms.length === 0 ? (
-        <section id="doctors-list" >
+        <section id="doctors-list" className="mt-3">
           <div className="row justify-content-md-center ">
             <div className="col-md-7 text-center">
-              <p className="text-light-gray fw-light">Silahkan berkonsultasi dengan dokter, ceritakan apa yang kamu rasakan kepada dokter agar dokter dapat memberi solusi buat kamu ya!</p>
+              <h6 className="text-gray fw-light">Silahkan berkonsultasi dengan dokter, ceritakan apa yang kamu rasakan kepada dokter agar dokter dapat memberi solusi buat kamu ya!</h6>
             </div>
             <div className="col-md-6 d-flex justify-content-center" data-aos="zoom-in" data-aos-duration="1000">
               <img src={noConsult} />
@@ -71,11 +75,11 @@ const ConsultRoom = () => {
                       <Row key={roomData.id}>
                         <div className="col">
                           <ChatItemList
-                            key={roomData.id}
-                            avatar={roomData.doctor.image}
-                            alt={roomData.doctor.email}
-                            title={roomData.doctor.name}
-                            subtitle={roomData.doctor.instansi}
+                            key={roomData?.id}
+                            avatar={roomData?.doctor?.image}
+                            alt={roomData?.doctor?.email}
+                            title={roomData?.doctor?.name}
+                            subtitle={roomData?.doctor?.instansi}
                             date={new Date()}
                             unread={0}
                             id={roomData.id}

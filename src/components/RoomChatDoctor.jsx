@@ -20,7 +20,7 @@ const RoomChatDoctor = () => {
       if (roomChatDoctor) {
         const roomWithChats = await axios
           .get(
-            `https://sk-chat-api.vercel.app/api/chat?roomId=${roomChatDoctor?.id}`
+            `https://sk-chat-api-five.vercel.app/api/chat?roomId=${roomChatDoctor?.id}`
           )
           .then((res) => res.data);
         setChatData(roomWithChats?.chats);
@@ -37,7 +37,7 @@ const RoomChatDoctor = () => {
   const handleSubmitForm = async (e) => {
     e.preventDefault();
     await fetch(
-      `https://sk-chat-api.vercel.app/api/chat?roomId=${roomChatDoctor?.id}`,
+      `https://sk-chat-api-five.vercel.app/api/chat?roomId=${roomChatDoctor?.id}`,
       {
         method: "POST",
         headers: {
@@ -55,7 +55,7 @@ const RoomChatDoctor = () => {
 
     const roomWithChats = await axios
       .get(
-        `https://sk-chat-api.vercel.app/api/chat?roomId=${roomChatDoctor?.id}`
+        `https://sk-chat-api-five.vercel.app/api/chat?roomId=${roomChatDoctor?.id}`
       )
       .then((res) => res.data);
     setChatData(roomWithChats?.chats);
@@ -64,7 +64,7 @@ const RoomChatDoctor = () => {
   const handleRefreshChat = async () => {
     const roomWithChats = await axios
       .get(
-        `https://sk-chat-api.vercel.app/api/chat?roomId=${roomChatDoctor?.id}`
+        `https://sk-chat-api-five.vercel.app/api/chat?roomId=${roomChatDoctor?.id}`
       )
       .then((res) => res.data);
     setChatData(roomWithChats?.chats);
@@ -117,14 +117,14 @@ const RoomChatDoctor = () => {
               </div>
               <div className="col-md-2 col-lg-2 d-flex justify-content-end mx-5">
                 <button className="btn color-carevul-gradient text-white mx-1">
-                  <RiSendPlaneLine className="fs-2" />
+                  <RiSendPlaneLine className="fs-5" />
                 </button>
-                <span
+                <button
                   className="logindong btn text-carevul border-carevul"
                   onClick={handleRefreshChat}
                 >
-                  <FiRefreshCcw className=" fs-2" />
-                </span>
+                  <FiRefreshCcw className=" fs-5" />
+                </button>
               </div>
             </form>
           </div>

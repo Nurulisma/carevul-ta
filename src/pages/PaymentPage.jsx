@@ -23,7 +23,7 @@ const PaymentPage = () => {
     const loginUser = JSON.parse(localStorage.getItem("idUser"));
 
     useEffect(() => {
-        fetch(`https://6487fbcf0e2469c038fcbc44.mockapi.io/doctor/${param.id}`)
+        fetch(`https://66684db2f53957909ff76db5.mockapi.io/doctor/${param.id}`)
         .then((response) => response.json())
         .then((data) => setDoctor(data));
     }, []);
@@ -54,27 +54,31 @@ const PaymentPage = () => {
         <>
             {/* <h1>Payment Page</h1> */}
             <Container className="mt-5">
-                <Row>
-                    <Col>
+                <Row className="justify-content-center">
+                    <Col md="5">
                         {/* <h1 className="text-carevul mb-4">Calendar</h1> */}
                         <Calendar />
                     </Col>
                         
-                    <Col>
+                    <Col >
 
-                    <Container> 
+                    <Container > 
                         <Row>
-                            <Col>
+                            <Col md="12">
                                 {/* Card Doctor's Info */}
                                 <Container fluid className="shadow py-3 px-5 rounded">
-                                    <Row>
+                                    <Row >
                                         <Col sm={5} className="d-flex justify-content-center align-items-center">
-                                        <img src={doctor.image} alt="doctor" className="rounded-circle" width={100} />
+                                        <div className="rounded-circle overflow-hidden" style={{width:'100px', height:'100px'}}>
+                                        <img src={doctor.image} alt="doctor" style={{width:'100%', height:'100%'}} className="object-fit-cover"/>
+                                        </div>
                                         </Col>
                                         <Col className="text-start mb-3" sm={7} >
-                                        <h4 className="text-carevul fw-bold ms-0 mt-2 doctor-name mt-n1">{doctor.name}</h4>
-                                        <p className=" doctor-name">Dokter {doctor.kategori} <br /><br /> {doctor.instansi}</p>
-                                        <h5 className=" doctor-name">  <span className="text-carevul ">Rp. 20000</span></h5>
+                                        <h4 className="text-carevul fw-bold ms-0 mt-2 doctor-name mt-1">{doctor.name} </h4>
+                                        <p className=" doctor-name mb-1 d-block">Dokter {doctor.kategori}</p>
+                                        {doctor.instansi}
+                                        {/* <h5 className=" doctor-name">  <span className="text-carevul ">1 Pasien</span>   telah buat janji dengan dokter ini</h5> */}
+                                        <h5 className=" doctor-name mt-2">  <span className="text-carevul ">Rp. 20000</span></h5>
                                         </Col>
                                         <Col className="d-flex justify-content-center align-items-center">
                                         {/* <Link to={"/list-doctor/id"} className="btn text-white fw-bold color-carevul-gradient px-5 py-2 shadow-sm">Pilih Dokter</Link> */}

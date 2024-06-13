@@ -10,6 +10,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 function Login() {
+  const [isLoading, setIsLoaading] = useState(false)
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -23,9 +24,9 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
+    setIsLoaading(true)
     let res = await axios.get(
-      "https://6454b891f803f345762f6469.mockapi.io/users"
+      "https://665e86491e9017dc16f04fff.mockapi.io/users"
     );
     let data = await res.data;
 
@@ -39,6 +40,7 @@ function Login() {
 
       if (result < 1) {
         alert("Gagal Login");
+        setIsLoaading(false)
       } else {
         // alert("Berhasil Login");
         const loginData = {
@@ -53,8 +55,10 @@ function Login() {
         // if payment context have a data, then redirect to booking page
         if (payment) {
           navigate("/bookingpage");
+          setIsLoaading(false)
         } else {
           navigate("/");
+          setIsLoaading(false)
         }
         // else redirect to home page
       }
@@ -100,7 +104,12 @@ function Login() {
                   />
 
                   <button className="btn-2" type="submit" data-aos="fade-right" data-aos-duration="1000">
-                    Login
+                    {isLoading ? (
+                      <div class="spinner-border" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                    ): "Login"}
+                    
                   </button>
                 </form>
                 <p className="fsize-15 d-block text-center"  data-aos="fade-right" data-aos-duration="1000">

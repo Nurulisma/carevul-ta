@@ -20,7 +20,7 @@ const RoomChat = () => {
     const getChatData = async () => {
       if (roomChat) {
         const roomWithChats = await axios
-          .get(`https://sk-chat-api.vercel.app/api/chat?roomId=${roomChat?.id}`)
+          .get(`https://sk-chat-api-five.vercel.app/api/chat?roomId=${roomChat?.id}`)
           .then((res) => res.data);
         setChatData(roomWithChats?.chats);
       }
@@ -36,7 +36,7 @@ const RoomChat = () => {
   const handleSubmitForm = async (e) => {
     e.preventDefault();
 
-    await fetch(`https://sk-chat-api.vercel.app/api/chat?roomId=${roomChat?.id}`,
+    await fetch(`https://sk-chat-api-five.vercel.app/api/chat?roomId=${roomChat?.id}`,
       {
         method: "POST",
         headers: {
@@ -54,14 +54,14 @@ const RoomChat = () => {
     setInputChat("");
 
     const roomWithChats = await axios
-      .get(`https://sk-chat-api.vercel.app/api/chat?roomId=${roomChat?.id}`)
+      .get(`https://sk-chat-api-five.vercel.app/api/chat?roomId=${roomChat?.id}`)
       .then((res) => res.data);
     setChatData(roomWithChats?.chats);
   };
 
   const handleRefreshChat = async () => {
     const roomWithChats = await axios
-      .get(`https://sk-chat-api.vercel.app/api/chat?roomId=${roomChat?.id}`)
+      .get(`https://sk-chat-api-five.vercel.app/api/chat?roomId=${roomChat?.id}`)
       .then((res) => res.data);
     setChatData(roomWithChats?.chats);
   };
@@ -83,6 +83,7 @@ const RoomChat = () => {
       />
       <div className="col ">
         <div id="chatroom-box">
+          <div className="mt-3">
           {chatData.map((item, index) => (
             <MessageBox
               key={index}
@@ -94,21 +95,22 @@ const RoomChat = () => {
               replyButton={true}
             />
           ))}
+          </div>
         </div>
       </div>
       <div className="col ">
         <div className="container-fluid">
-          <div className="row">
+          <div className="row align-items-center justify-content-center">
             <form
               // className="col d-flex justify-content-between align-items-center"
               className="col-12 d-flex justify-content-between gap-0"
               onSubmit={(e) => handleSubmitForm(e)}
             >
               <div className="container-fluid">
-                <div className="row d-flex justify-content-between ">
-                  <div className="col-lg-9">
+                <div className="row justify-content-between ">
+                  <div className="col-lg-8">
                     <input
-                      className="border-carevul gap-2 "
+                      className="border-carevul"
                       placeholder="Type here..."
                       type="text"
                       style={{ width: "100%" }}
@@ -116,19 +118,21 @@ const RoomChat = () => {
                       onChange={(e) => setInputChat(e.target.value)}
                     />
                   </div>
-                  <div className="col-md-2 col-lg-2 d-flex justify-content-end ">
+                  <div className="col-md-2 col-lg-2">
                     <button
-                      className="btn color-carevul-gradient text-white mx-1"
-                      size="sm"
+                      className="btn color-carevul-gradient text-white"
                       // style={{ width: "70%" }}
                     >
-                      <RiSendPlaneLine className="fs-2" />
+                      <RiSendPlaneLine className="fs-5" />
                     </button>
-                    <span
+                  
+                  </div>
+                  <div className="col-md-2 col-lg-2">
+                  <span
                       className="logindong btn text-carevul border-carevul"
                       onClick={handleRefreshChat}
                     >
-                      <FiRefreshCcw className="fs-2" />
+                      <FiRefreshCcw className="fs-5" />
                     </span>
                   </div>
                 </div>
